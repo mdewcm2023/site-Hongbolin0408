@@ -11,3 +11,14 @@
 <p>message</p>
 <p>指令執行時，隨後要接上提交字串，說明本次提交的改版說明</p>
 <h1>補課</h1>
+<h1>w8</h1>
+<p><span>提問: 想了解有關使用 cmsimde 和 GitHub Pages 創建靜態網站的具體信息</span></p>
+<p>要使用 cmsimde 和 GitHub Pages 創建靜態網站，您需要執行以下步驟：</p>
+<ol>
+<li>在 github.com 建立一個新倉儲</li>
+<li>針對新倉儲設定 Github Pages,  以 main branch 設為網站根目錄</li>
+<li>將倉儲 git clone 到近端, 加上 cmsimde 程式, 並將 up_dir 內容複製到倉儲根目錄</li>
+<li>在近端執行動態網站, 用來編輯動態網站與靜態網站內容 (透過動態網站內容 generate_pages 而產生)</li>
+<li>以 git add ., git commit -m "提交說明字串", git push (git commit 指令需要有身分設定, 也就是 home_ipv6 或 home_ipv4  目錄中的 user.name 與 user.email 進行提交, 至於 git push 需要 .git/config 中 url 可以透過 token 標示倉儲存取權, 而 home_ipv6/.gitconfig 若在純 IPv6 下還需要有 http.proxy 的設定)</li>
+<li>持續利用 localhost 中的動態網站修改內容後, 轉為靜態然後重複上一個 acp 流程將改版送到 github.com</li>
+</ol>
