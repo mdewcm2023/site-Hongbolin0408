@@ -147,15 +147,14 @@ img.add_border {
 <p>Nginx 建立 WWW 伺服器</p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">server {
         listen       80;
-        server_name 192.168.1.139;
-
+        server_name 192.168.1.18;
         #charset koi8-r;
 
         #access_log  logs/host.access.log  main;
 
         location / {
-            root   html;
-            index  index.html index.htm;
+            root   site;
+            index  index.html ;
         }
 
         #error_page  404              /404.html;
