@@ -56,8 +56,32 @@ for i in data:
 <div><a href="https://gist.githubusercontent.com/mdecycu/07f0f0817115a68d55d6ca603c5ab393/raw/239f4eb84715978daead6ac1f231af7f190a2a5e/1aw9.txt" rel="noreferrer noopener" tabindex="-1" target="_blank" title="https://gist.githubusercontent.com/mdecycu/07f0f0817115a68d55d6ca603c5ab393/raw/239f4eb84715978daead6ac1f231af7f190a2a5e/1aw9.txt">1aw9.txt</a>,</div>
 <div></div>
 <div>分別讀取各次考試的成績，其中利用了list(數列),但每次讀取後,若無法將各學員的成績累加後求取平均,則無法列出個學員的期中成績</div>
-<div></div>
-<h1>w9平均成績</h1>
+<h1>Website</h1>
+<p>cmsimde 利用 Prython + Flask 建立動態網站, 有 login, logout, 網頁是由 Prython + css + javascript所產生,主要功能是可以直接編輯後產生動態網頁.</p>
+<p>cmsimde 靜態網頁資料位於 content 目錄下, 內容只有 html +css + javascript, 所有資料都是透過WWW SERVER 伺服, 所以安全機制在於 WWW server與操作系統.</p>
+<p>Nginx 建立 WWW 伺服器:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">server {
+        listen       80;
+        server_name 192.168.1.139;
+
+        #charset koi8-r;
+
+        #access_log  logs/host.access.log  main;
+
+        location / {
+            root   html;
+            index  index.html index.htm;
+        }
+
+        #error_page  404              /404.html;
+
+        # redirect server error pages to the static page /50x.html
+        #
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   html;
+        }</pre>
+<p><br/><br/></p><h1>w9平均成績</h1>
 <p>這是各個學員的平均成績程式:</p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># Example data for five tests
 url1 = "https://gist.githubusercontent.com/mdecycu/07f0f0817115a68d55d6ca603c5ab393/raw/239f4eb84715978daead6ac1f231af7f190a2a5e/1aw5.txt"
@@ -105,7 +129,9 @@ for test_data in [test1, test2, test3, test4, test5]:
 for student_number, scores in student_scores.items():
     average_score = int(sum(scores) / len(scores))
     print(f"{student_number}的期中平均成績 {average_score}")</pre>
-<p><br/><br/></p>
+</div>
+<div></div>
+<div></div>
 <!-- 導入 brython 程式庫 -->
 <p>
 <script src="/static/brython.js"></script>
@@ -119,7 +145,6 @@ brython({debug:1, pythonpath:['./../cmsimde/static/','./../downloads/py/']});
 }
 </script>
 </p>
-<div id="brython_div"></div>
 <p>
 <script type="text/python">
 from browser import html, document
@@ -461,68 +486,6 @@ doc["threejsblock"].bind("click", threejsblock.do)
 <p><!-- 程式執行 ouput 區 --></p>
 <div style="width: 100%; height: 100%;"><textarea autocomplete="off" id="kw_console2"></textarea></div>
 <p><!-- Brython 程式執行的結果, 都以 brython_div1 作為切入位置 --></p>
-<h1>w10</h1>
-<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># Example data for five tests
-url1 = "https://gist.githubusercontent.com/mdecycu/07f0f0817115a68d55d6ca603c5ab393/raw/239f4eb84715978daead6ac1f231af7f190a2a5e/1aw5.txt"
-url2 = "https://gist.githubusercontent.com/mdecycu/07f0f0817115a68d55d6ca603c5ab393/raw/239f4eb84715978daead6ac1f231af7f190a2a5e/1aw6.txt"
-url3 = "https://gist.githubusercontent.com/mdecycu/07f0f0817115a68d55d6ca603c5ab393/raw/239f4eb84715978daead6ac1f231af7f190a2a5e/1aw6-2.txt"
-url4 = "https://gist.githubusercontent.com/mdecycu/07f0f0817115a68d55d6ca603c5ab393/raw/075c06b2baf1bb07665f1a98e9f88f7e81ebe1a4/1aw8.txt"
-url5 = "https://gist.githubusercontent.com/mdecycu/07f0f0817115a68d55d6ca603c5ab393/raw/239f4eb84715978daead6ac1f231af7f190a2a5e/1aw9.txt"
-
-'''
-test1 = ["12345:80", "67890:70"]
-test2 = ["12345:85", "67890:75"]
-test3 = ["12345:90", "67890:80"]
-test4 = ["12345:95", "67890:85"]
-test5 = ["12345:100", "67890:90"]
-'''
-test1 = open(url1).read().split("\n")[1:]
-test2 = open(url2).read().split("\n")[1:]
-test3 = open(url3).read().split("\n")[1:]
-test4 = open(url4).read().split("\n")[1:]
-test5 = open(url5).read().split("\n")[1:]
-
-
-# Create a dictionary to store the student numbers and their test scores
-student_scores = {}
-
-# Iterate over the data for each test
-for test_data in [test1, test2, test3, test4, test5]:
-    # Iterate over the data for this test
-    for item in test_data:
-        # Split the item into its components
-        student_number, score = item.split(":")
-
-        # Convert the score to an integer
-        try:
-            score = int(score)
-        except:
-            score = 0
-
-        # Add the score to the list of scores for this student
-        if student_number not in student_scores:
-            student_scores[student_number] = []
-        student_scores[student_number].append(score)
-
-# Calculate the average score for each student
-for student_number, scores in student_scores.items():
-    average_score = int(sum(scores) / len(scores))
-    print(f"{student_number}的期中平均成績 {average_score}")</pre>
-<p><br/><br/></p>
-<p><!-- 導入 brython 程式庫 --></p>
-<p>
-<script src="/static/brython.js"></script>
-<script src="/static/brython_stdlib.js"></script>
-</p>
-<p><!-- 啟動 Brython --></p>
-<p>
-<script>
-window.onload=function(){
-brython({debug:1, pythonpath:['./../cmsimde/static/','./../downloads/py/']});
-}
-</script>
-</p>
-<div id="brython_div"></div>
 <p>
 <script type="text/python">
 from browser import html, document
@@ -580,4 +543,4 @@ for student_number, scores in student_scores.items():
 
 brython_div <= data
 </script>
-</p></div>
+</p>

@@ -141,129 +141,33 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">Website << <a href='Website.html'>Previous</a> <a href='Brython.html'>Next</a> >> Brython<br /><h1>w9平均成績</h1>
-<p>這是各個學員的平均成績程式:</p>
-<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># Example data for five tests
-url1 = "https://gist.githubusercontent.com/mdecycu/07f0f0817115a68d55d6ca603c5ab393/raw/239f4eb84715978daead6ac1f231af7f190a2a5e/1aw5.txt"
-url2 = "https://gist.githubusercontent.com/mdecycu/07f0f0817115a68d55d6ca603c5ab393/raw/239f4eb84715978daead6ac1f231af7f190a2a5e/1aw6.txt"
-url3 = "https://gist.githubusercontent.com/mdecycu/07f0f0817115a68d55d6ca603c5ab393/raw/239f4eb84715978daead6ac1f231af7f190a2a5e/1aw6-2.txt"
-url4 = "https://gist.githubusercontent.com/mdecycu/07f0f0817115a68d55d6ca603c5ab393/raw/075c06b2baf1bb07665f1a98e9f88f7e81ebe1a4/1aw8.txt"
-url5 = "https://gist.githubusercontent.com/mdecycu/07f0f0817115a68d55d6ca603c5ab393/raw/239f4eb84715978daead6ac1f231af7f190a2a5e/1aw9.txt"
+    <div id="tipue_search_content">資料結構 << <a href='資料結構.html'>Previous</a> <a href='w9平均成績.html'>Next</a> >> w9平均成績<br /><h1>Website</h1>
+<p>cmsimde 利用 Prython + Flask 建立動態網站, 有 login, logout, 網頁是由 Prython + css + javascript所產生,主要功能是可以直接編輯後產生動態網頁.</p>
+<p>cmsimde 靜態網頁資料位於 content 目錄下, 內容只有 html +css + javascript, 所有資料都是透過WWW SERVER 伺服, 所以安全機制在於 WWW server與操作系統.</p>
+<p>Nginx 建立 WWW 伺服器:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">server {
+        listen       80;
+        server_name 192.168.1.139;
 
-'''
-test1 = ["12345:80", "67890:70"]
-test2 = ["12345:85", "67890:75"]
-test3 = ["12345:90", "67890:80"]
-test4 = ["12345:95", "67890:85"]
-test5 = ["12345:100", "67890:90"]
-'''
-test1 = open(url1).read().split("\n")[1:]
-test2 = open(url2).read().split("\n")[1:]
-test3 = open(url3).read().split("\n")[1:]
-test4 = open(url4).read().split("\n")[1:]
-test5 = open(url5).read().split("\n")[1:]
+        #charset koi8-r;
 
+        #access_log  logs/host.access.log  main;
 
-# Create a dictionary to store the student numbers and their test scores
-student_scores = {}
+        location / {
+            root   html;
+            index  index.html index.htm;
+        }
 
-# Iterate over the data for each test
-for test_data in [test1, test2, test3, test4, test5]:
-    # Iterate over the data for this test
-    for item in test_data:
-        # Split the item into its components
-        student_number, score = item.split(":")
+        #error_page  404              /404.html;
 
-        # Convert the score to an integer
-        try:
-            score = int(score)
-        except:
-            score = 0
-
-        # Add the score to the list of scores for this student
-        if student_number not in student_scores:
-            student_scores[student_number] = []
-        student_scores[student_number].append(score)
-
-# Calculate the average score for each student
-for student_number, scores in student_scores.items():
-    average_score = int(sum(scores) / len(scores))
-    print(f"{student_number}的期中平均成績 {average_score}")</pre>
-</div>
-<div></div>
-<div></div>
-<!-- 導入 brython 程式庫 -->
-<p>
-<script src="./../cmsimde/static/brython.js"></script>
-<script src="./../cmsimde/static/brython_stdlib.js"></script>
-</p>
-<!-- 啟動 Brython -->
-<p>
-<script>
-window.onload=function(){
-brython({debug:1, pythonpath:['./../cmsimde/static/','./../downloads/py/']});
-}
-</script>
-</p>
-<p>
-<script type="text/python">
-from browser import html, document
-brython_div = document["brython_div"]
-# Example data for five tests
-url1 = "https://gist.githubusercontent.com/mdecycu/07f0f0817115a68d55d6ca603c5ab393/raw/239f4eb84715978daead6ac1f231af7f190a2a5e/1aw5.txt"
-url2 = "https://gist.githubusercontent.com/mdecycu/07f0f0817115a68d55d6ca603c5ab393/raw/239f4eb84715978daead6ac1f231af7f190a2a5e/1aw6.txt"
-url3 = "https://gist.githubusercontent.com/mdecycu/07f0f0817115a68d55d6ca603c5ab393/raw/239f4eb84715978daead6ac1f231af7f190a2a5e/1aw6-2.txt"
-url4 = "https://gist.githubusercontent.com/mdecycu/07f0f0817115a68d55d6ca603c5ab393/raw/075c06b2baf1bb07665f1a98e9f88f7e81ebe1a4/1aw8.txt"
-url5 = "https://gist.githubusercontent.com/mdecycu/07f0f0817115a68d55d6ca603c5ab393/raw/239f4eb84715978daead6ac1f231af7f190a2a5e/1aw9.txt"
- 
-'''
-test1 = ["12345:80", "67890:70"]
-test2 = ["12345:85", "67890:75"]
-test3 = ["12345:90", "67890:80"]
-test4 = ["12345:95", "67890:85"]
-test5 = ["12345:100", "67890:90"]
-'''
-test1 = open(url1).read().split("\n")[1:]
-test2 = open(url2).read().split("\n")[1:]
-test3 = open(url3).read().split("\n")[1:]
-test4 = open(url4).read().split("\n")[1:]
-test5 = open(url5).read().split("\n")[1:]
- 
- 
-# Create a dictionary to store the student numbers and their test scores
-student_scores = {}
- 
-# Iterate over the data for each test
-for test_data in [test1, test2, test3, test4, test5]:
-    # Iterate over the data for this test
-    for item in test_data:
-        # Split the item into its components
-        student_number, score = item.split(":")
- 
-        # Convert the score to an integer
-        try:
-            score = int(score)
-        except:
-            score = 0
- 
-        # Add the score to the list of scores for this student
-        if student_number not in student_scores:
-            student_scores[student_number] = []
-        student_scores[student_number].append(score)
- 
-# Calculate the average score for each student
-for student_number, scores in student_scores.items():
-    average_score = int(sum(scores) / len(scores))
-    print(f"{student_number}的期中平均成績 {average_score}")
-    brython_div <= student_number
-    brython_div <= ":"
-    brython_div <= average_score
-    brython_div <= html.BR()
-
-brython_div <= data
-</script>
-</p>
-<br />Website << <a href='Website.html'>Previous</a> <a href='Brython.html'>Next</a> >> Brython</div>
+        # redirect server error pages to the static page /50x.html
+        #
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   html;
+        }</pre>
+<p>議題: 是否可以將 localhost 改為 Windows 所在的 IP 位址, 然後設法將個人的靜態網頁目錄置入, 利用 Nginx WWW 伺服器來 server cmsimde 靜態網頁內容?</p>
+<p><br/><br/></p><br />資料結構 << <a href='資料結構.html'>Previous</a> <a href='w9平均成績.html'>Next</a> >> w9平均成績</div>
         
     <!-- footer -->
       <div class="container">
