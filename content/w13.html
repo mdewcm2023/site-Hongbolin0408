@@ -2,7 +2,7 @@
         <head>
         <title>41123121</title>
         <meta charset="utf-8">
-<meta property="head" content="H1">
+<meta property="head" content="H2">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700,900" rel="stylesheet">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
@@ -141,10 +141,48 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content"> <a href='筆記.html'>Next</a> >> 筆記<br /><h1>About</h1>
-<p><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">倉庫：  </span></span><a href="https://github.com/mdewcm2023/site-Hongbolin0408"><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">https://github.com/mdewcm2023/site-Hongbolin0408</span></span></a></p>
-<p><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">網站：  <a href="https://mdewcm2023.github.io/site-Hongbolin0408">https://mdewcm2023.github.io/site-Hongbolin0408</a></span></span></p>
-<br /> <a href='筆記.html'>Next</a> >> 筆記</div>
+    <div id="tipue_search_content">w9 << <a href='w9.html'>Previous</a> <a href='資料結構.html'>Next</a> >> 資料結構<br /><h1>w13</h1>
+<p>在 stud2 主機上以 wsgi 執行動態網站, 以 nginx serve 靜態網站:</p>
+<p><a href="https://nfuedu-my.sharepoint.com/:v:/g/personal/yen_nfu_edu_tw/EW6xYokgCRFHg7WXquEfFD4BNa43opTIFiCRN8y1_9QPig?e=AdwXfT"></a></p>
+<p>在 stud2 主機建立倉儲的動態系統:</p>
+<p>ssh<span> wcm41123121@stud2.cycu.org</span> 登入後, 以 ssh-keygen 在 .ssh 目錄下建立 id_rsa,<span> </span><span>id_rsa.pub</span></p>
+<p>.ssh/config:</p>
+<div>
+<div class="syntaxhighlighter js" id="highlighter_360496">
+<table border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td class="gutter">
+<div class="line number1 index0 alt2">1</div>
+<div class="line number2 index1 alt1">2</div>
+<div class="line number3 index2 alt2">3</div>
+<div class="line number4 index3 alt1">4</div>
+</td>
+<td class="code">
+<div class="container">
+<div class="line number1 index0 alt2"><code class="js plain">Host github.com</code></div>
+<div class="line number2 index1 alt1"><code class="js plain">User git</code></div>
+<div class="line number3 index2 alt2"><code class="js plain">Hostname github.com</code></div>
+<div class="line number4 index3 alt1"><code class="js plain">ProxyCommand /usr/bin/ncat --proxy p4.cycu.org:3128 --proxy-type http %h %p</code></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>sftp<span>  wcm41123121@stud2.cycu.org</span> 登入後, cd .ssh 然後以 put<span> </span><span>config</span><span> </span>將代理主機的設定檔案送到 stud2 帳號下的 .ssh 目錄, 使用 get id_rsa.pub 將公鑰取下, 然後以 SciTE 編輯器打開後, 將公鑰內容送到 Github 帳號下的 settings 中的 SSH and GPG 設定區.</p>
+<p>完成上述設定後, 以 SSH 協定取下倉儲:</p>
+<p>ssh 登入帳號後, 在所在目錄 /home/帳號/, 以 git clone<span> </span><a href="mailto:git@github.com:wcm2023">git@github.com:wcm2023</a>/倉儲名稱.git repo</p>
+<p>cd repo</p>
+<p>利用以下指令, 將 acp 設為 user 可以執行 (Execute):</p>
+<p>chmod u+x acp</p>
+<p>以 sftp get 取下 repo 目錄下的 waitress_server.py</p>
+<p>在 Windows 編輯 waitress_server.py, 之後存為 server.py, 再送回 repo 目錄下.</p>
+<p>使用vi server.py更改</p>
+<p>編輯過程在填入個人帳號所配發的 9 字頭的埠號.</p>
+<p>ssh 遠端登入到 repo 目錄下, 執行 hupper3 -m server.py 測試是否已經以<span> </span><a href="https://stud2.cycu.org/">https://stud2.cycu.org:</a>8字頭的埠號. 若可以連結, 必須馬上更改登入密碼.</p>
+<p>注意  如果是用wifi做的話要用putty才能開啟 </p><br />w9 << <a href='w9.html'>Previous</a> <a href='資料結構.html'>Next</a> >> 資料結構</div>
         
     <!-- footer -->
       <div class="container">
